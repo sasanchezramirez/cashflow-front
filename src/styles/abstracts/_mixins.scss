@@ -6,21 +6,18 @@
       }
     }
   }
-  
+
   // Mixin para temas
-  @mixin theme-aware($property, $color-key) {
-    @each $theme, $colors in $theme-colors {
-      .theme-#{$theme} & {
-        #{$property}: map-get($colors, $color-key);
-      }
-    }
+  @mixin theme-aware($property, $variable-name) {
+    #{$property}: var(--#{$variable-name}-color);
+    transition: #{$property} 0.3s ease;
   }
-  
+
   // Mixin para tipografía
   @mixin font-size($size) {
     font-size: map-get($font-sizes, $size);
   }
-  
+
   // Mixin para sombras
   @mixin shadow($level) {
     box-shadow: map-get($shadows, $level);

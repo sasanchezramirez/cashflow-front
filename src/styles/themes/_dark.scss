@@ -1,4 +1,4 @@
-.theme-dark {
+:root[data-theme="dark"] {
     --background-color: #{map-get(map-get($theme-colors, dark), background)};
     --surface-color: #{map-get(map-get($theme-colors, dark), surface)};
     --text-primary: #{map-get(map-get($theme-colors, dark), text-primary)};
@@ -6,4 +6,8 @@
     --border-color: #{map-get(map-get($theme-colors, dark), border)};
     --card-bg: #{map-get(map-get($theme-colors, dark), card-bg)};
     --divider-color: #{map-get(map-get($theme-colors, dark), divider)};
+    --header-shadow: #{map-get($shadows, lg)};
+    --input-bg: #{map-get(map-get($theme-colors, dark), surface)};
+    --input-border: #{map-get(map-get($theme-colors, dark), border)};
+    --hover-bg: #{rgba(map-get(map-get($colors, primary), 500), 0.2)};
   }

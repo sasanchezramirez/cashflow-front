@@ -1,0 +1,14 @@
+.header {
+  @include theme-aware('background-color', 'background');
+  @include theme-aware('color', 'text-primary');
+
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: spacing(4);
+  z-index: map-get($z-index, 10);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+}

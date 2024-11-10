@@ -1,1 +1,8 @@
-<p>quick-actions works!</p>
+<div class="quick-actions">
+  <div class="action-card" *ngFor="let action of actions">
+    <div class="action-card__icon" [style.background-color]="action.bgColor">
+      <mat-icon>{{action.icon}}</mat-icon>
+    </div>
+    <span class="action-card__title">{{action.title}}</span>
+  </div>
+</div>

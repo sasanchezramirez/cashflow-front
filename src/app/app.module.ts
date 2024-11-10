@@ -11,6 +11,7 @@ import { TransactionsModule } from './features/transactions/transactions.module'
 import { CategoriesModule } from './features/categories/categories.module';
 import { BudgetsModule } from './features/budgets/budgets.module';
 import { SettingsModule } from './features/settings/settings.module';
+import { HeaderComponent } from './core/layout/components/header/header.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { SettingsModule } from './features/settings/settings.module';
     TransactionsModule,
     CategoriesModule,
     BudgetsModule,
-    SettingsModule
+    SettingsModule,
+    HeaderComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,32 @@
+.app-container {
+  min-height: 100vh;
+  background-color: var(--background-color);
+  color: var(--text-primary);
+
+  padding-top: spacing(16); // Ajusta según la altura de tu header
+}
+
+.content-wrapper {
+  padding: spacing(4);
+
+  @include respond-to(md) {
+    padding: spacing(6);
+  }
+}
+
+// Estilos para cards/secciones
+.card {
+  background-color: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: map-get($border-radius, base);
+  padding: spacing(4);
+  margin-bottom: spacing(4);
+  box-shadow: var(--header-shadow);
+}
+
+// Estilos para divisores
+.divider {
+  border: none;
+  border-bottom: 1px solid var(--divider-color);
+  margin: spacing(4) 0;
+}

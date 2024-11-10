@@ -1,1 +1,18 @@
-<p>header works!</p>
+
+<header class="header">
+    <div class="header__logo">
+      <h1 class="header__title">CashFlow</h1>
+    </div>
+    <button
+      (click)="toggleTheme()"
+      class="header__theme-toggle"
+      aria-label="Toggle Theme"
+    >
+      <ng-container *ngIf="isDarkMode; else lightMode">
+        <div class="theme-icon theme-icon--dark"></div>
+      </ng-container>
+      <ng-template #lightMode>
+        <div class="theme-icon theme-icon--light"></div>
+      </ng-template>
+    </button>
+  </header>
