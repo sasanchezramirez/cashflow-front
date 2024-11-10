@@ -1,0 +1,24 @@
+.btn {
+    padding: spacing(2) spacing(4);
+    border-radius: map-get($border-radius, base);
+    font-weight: map-get($font-weights, medium);
+    transition: map-get($transitions, default);
+  
+    &-primary {
+      background-color: color(primary, 500);
+      color: white;
+  
+      &:hover {
+        background-color: color(primary, 600);
+      }
+    }
+  
+    &-secondary {
+      background-color: color(secondary, 500);
+      color: white;
+  
+      &:hover {
+        background-color: color(secondary, 600);
+      }
+    }
+  }

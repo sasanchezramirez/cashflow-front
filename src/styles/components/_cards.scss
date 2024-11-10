@@ -1,0 +1,11 @@
+.card {
+    @include theme-aware('background-color', 'card-bg');
+    @include theme-aware('color', 'text-primary');
+    border-radius: map-get($border-radius, lg);
+    padding: spacing(4);
+    @include shadow('base');
+    
+    @include respond-to(md) {
+      padding: spacing(6);
+    }
+  }

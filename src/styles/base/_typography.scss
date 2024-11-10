@@ -1,0 +1,18 @@
+body {
+    font-family: $font-family-base;
+    font-size: map-get($font-sizes, base);
+    line-height: map-get($line-heights, normal);
+    @include theme-aware('color', 'text-primary');
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: $font-family-heading;
+    font-weight: map-get($font-weights, bold);
+  }
+  
+  h1 { @include font-size('4xl'); }
+  h2 { @include font-size('3xl'); }
+  h3 { @include font-size('2xl'); }
+  h4 { @include font-size('xl'); }
+  h5 { @include font-size('lg'); }
+  h6 { @include font-size('base'); }

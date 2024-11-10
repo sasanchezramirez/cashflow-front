@@ -1,0 +1,27 @@
+// Mixins de respuesta
+@mixin respond-to($breakpoint) {
+    @if map-has-key($breakpoints, $breakpoint) {
+      @media (min-width: map-get($breakpoints, $breakpoint)) {
+        @content;
+      }
+    }
+  }
+  
+  // Mixin para temas
+  @mixin theme-aware($property, $color-key) {
+    @each $theme, $colors in $theme-colors {
+      .theme-#{$theme} & {
+        #{$property}: map-get($colors, $color-key);
+      }
+    }
+  }
+  
+  // Mixin para tipografía
+  @mixin font-size($size) {
+    font-size: map-get($font-sizes, $size);
+  }
+  
+  // Mixin para sombras
+  @mixin shadow($level) {
+    box-shadow: map-get($shadows, $level);
+  }
