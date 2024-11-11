@@ -377,10 +377,6 @@ input.mat-mdc-input-element {
   .mat-mdc-form-field {
     width: 100%;
 
-    .mdc-text-field--outlined {
-      background-color: #1A1A1A !important;
-    }
-
     // Eliminar todos los bordes
     .mdc-notched-outline {
       display: none !important;
@@ -395,20 +391,25 @@ input.mat-mdc-input-element {
       border: none !important;
     }
 
-    // Eliminar el label flotante
+    // Ajustar el input y placeholder
+    .mat-mdc-input-element {
+      color: white !important;
+
+      &::placeholder {
+        color: var(--text-secondary) !important;
+        opacity: 1 !important;
+      }
+    }
+
+    // Eliminar labels flotantes
     .mat-mdc-form-field-label {
       display: none !important;
     }
 
-    // Ajustar el input
+    // Ajustar el espaciado del input
     .mat-mdc-form-field-infix {
       padding: 0 !important;
       border-top: 0 !important;
-    }
-
-    // Color del texto del input
-    .mat-mdc-input-element {
-      color: white !important;
     }
 
     // Estados hover y focus
@@ -421,10 +422,10 @@ input.mat-mdc-input-element {
     }
   }
 
-  // Estilos del prefijo ($)
+  // Estilos para el prefijo ($)
   .mat-mdc-form-field-prefix {
-    color: var(--text-secondary);
-    margin-right: 0.5rem;
+    color: var(--text-secondary) !important;
+    margin-right: 0.5rem !important;
   }
 
   // Estilos del calendario
