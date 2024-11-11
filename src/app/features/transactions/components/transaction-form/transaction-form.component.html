@@ -1,1 +1,56 @@
-<p>transaction-form works!</p>
+<div class="transaction-form">
+  <div class="transaction-form__header">
+    <h2>Add Expense</h2>
+  </div>
+
+  <form [formGroup]="expenseForm" (ngSubmit)="onSubmit()" class="transaction-form__form">
+    <div class="categories-grid">
+      <div *ngFor="let category of categories"
+           class="category-item"
+           [class.selected]="selectedCategory?.id === category.id"
+           (click)="selectCategory(category)">
+        <div class="category-icon" [style.backgroundColor]="category.color">
+          <mat-icon>{{category.icon}}</mat-icon>
+        </div>
+        <span>{{category.name}}</span>
+      </div>
+    </div>
+
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label>Amount</mat-label>
+      <input matInput type="number" formControlName="amount">
+      <span matPrefix>$&nbsp;</span>
+    </mat-form-field>
+
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label>Description</mat-label>
+      <input matInput formControlName="description">
+    </mat-form-field>
+
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label>Date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <div class="priority-slider">
+      <label>Priority</label>
+      <mat-slider min="1" max="3" step="1" discrete class="custom-slider">
+        <input matSliderThumb formControlName="priority">
+      </mat-slider>
+      <div class="priority-labels">
+        <span>Low</span>
+        <span>Medium</span>
+        <span>High</span>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button mat-button (click)="onCancel()">Cancel</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!expenseForm.valid">
+        Save Expense
+      </button>
+    </div>
+  </form>
+</div>

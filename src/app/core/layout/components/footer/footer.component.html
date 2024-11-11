@@ -1,1 +1,9 @@
-<p>footer works!</p>
+<nav class="footer-nav">
+  <a *ngFor="let item of navigationItems"
+     [routerLink]="item.route"
+     routerLinkActive="active"
+     class="nav-item">
+    <mat-icon>{{item.icon}}</mat-icon>
+    <span class="nav-label">{{item.label}}</span>
+  </a>
+</nav>

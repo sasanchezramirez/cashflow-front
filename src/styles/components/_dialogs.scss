@@ -1,0 +1,22 @@
+.mat-mdc-dialog-container {
+  --mdc-dialog-container-color: var(--surface-color) !important;
+}
+
+.custom-dialog {
+  .mat-mdc-dialog-surface {
+    border-radius: 1rem !important;
+    overflow: hidden;
+    background: var(--surface-color);
+    color: var(--text-primary);
+  }
+
+  .mdc-dialog__content {
+    padding: 0 !important;
+  }
+}
+
+.expense-modal {
+  .mat-mdc-dialog-container {
+    padding: 0;
+  }
+}

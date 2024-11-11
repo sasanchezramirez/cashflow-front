@@ -1,5 +1,5 @@
 <div class="quick-actions">
-  <div class="action-card" *ngFor="let action of actions">
+  <div class="action-card" *ngFor="let action of actions" (click)="handleAction(action.action)">
     <div class="action-card__icon" [style.background-color]="action.bgColor">
       <mat-icon>{{action.icon}}</mat-icon>
     </div>

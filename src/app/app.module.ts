@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +13,7 @@ import { CategoriesModule } from './features/categories/categories.module';
 import { BudgetsModule } from './features/budgets/budgets.module';
 import { SettingsModule } from './features/settings/settings.module';
 import { HeaderComponent } from './core/layout/components/header/header.component';
+import { FooterComponent } from './core/layout/components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,7 @@ import { HeaderComponent } from './core/layout/components/header/header.componen
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     CoreModule,
     SharedModule,
@@ -28,7 +31,8 @@ import { HeaderComponent } from './core/layout/components/header/header.componen
     CategoriesModule,
     BudgetsModule,
     SettingsModule,
-    HeaderComponent
+    HeaderComponent,
+    FooterComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

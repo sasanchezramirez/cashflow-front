@@ -1,1 +1,17 @@
-<p>recent-transactions works!</p>
+<div class="transactions-card">
+  <h2 class="transactions-card__title">Recent Transactions</h2>
+  <div class="transactions-list">
+    <div class="transaction-item" *ngFor="let transaction of transactions">
+      <div class="transaction-item__info">
+        <div class="transaction-item__icon">
+          <mat-icon>{{transaction.category.icon}}</mat-icon>
+        </div>
+        <div class="transaction-item__details">
+          <span class="transaction-item__category">{{transaction.category.name}}</span>
+          <span class="transaction-item__description">{{transaction.description}}</span>
+        </div>
+      </div>
+      <span class="transaction-item__amount">{{transaction.amount | number:'1.2-2'}}</span>
+    </div>
+  </div>
+</div>

@@ -2,11 +2,14 @@
   min-height: 100vh;
   background-color: var(--background-color);
   color: var(--text-primary);
-
-  padding-top: spacing(16); // Ajusta según la altura de tu header
+  padding-top: spacing(16); // Espacio para el header
+  padding-bottom: calc(4rem + spacing(4)); // Espacio para el footer
+  display: flex;
+  flex-direction: column;
 }
 
 .content-wrapper {
+  flex: 1;
   padding: spacing(4);
 
   @include respond-to(md) {

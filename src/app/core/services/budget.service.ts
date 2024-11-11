@@ -15,6 +15,17 @@ export interface BalanceInfo {
   lastDayBalance: number;
 }
 
+export interface Transaction {
+  id: string;
+  category: {
+    name: string;
+    icon: string;
+  };
+  description: string;
+  amount: number;
+  date: Date;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -47,5 +58,30 @@ export class BudgetService {
       expenses: 1041.68,
       lastDayBalance: -85.32 // Valor negativo indica gasto
     });
+  }
+
+  getRecentTransactions(): Observable<Transaction[]> {
+    return of([
+      {
+        id: '1',
+        category: {
+          name: 'Groceries',
+          icon: 'shopping_cart'
+        },
+        description: 'Walmart',
+        amount: -85.32,
+        date: new Date()
+      },
+      {
+        id: '2',
+        category: {
+          name: 'Transport',
+          icon: 'directions_car'
+        },
+        description: 'Gas Station',
+        amount: -45.00,
+        date: new Date()
+      }
+    ]);
   }
 }
