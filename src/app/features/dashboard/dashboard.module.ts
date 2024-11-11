@@ -9,7 +9,7 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
   imports: [
     CommonModule,
     HomeComponent,
-    DashboardRoutingModule
+    DashboardRoutingModule,
   ]
 })
 export class DashboardModule { }

@@ -1,0 +1,95 @@
+.expense-container {
+  margin: 1.5rem 0;
+}
+
+.expense-card {
+  background-color: var(--surface-color);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: var(--card-shadow);
+
+
+  &__title {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  &__amount {
+    color: var(--text-primary);
+    font-size: 2rem;
+    font-weight: 600;
+  }
+}
+
+.balance-card {
+  background-color: var(--surface-color);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: var(--card-shadow);
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  &__title {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    font-weight: 500;
+  }
+
+  &__last-day {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--success-color);
+
+    &.negative {
+      color: var(--error-color);
+    }
+
+    mat-icon {
+      font-size: 1.25rem;
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+  }
+
+  &__amount {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 1rem 0;
+  }
+
+  &__stats {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+
+    .income, .expenses {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+
+      mat-icon {
+        font-size: 1rem;
+        width: 1rem;
+        height: 1rem;
+      }
+    }
+
+    .income {
+      color: var(--success-color);
+    }
+
+    .expenses {
+      color: var(--error-color);
+    }
+  }
+}
