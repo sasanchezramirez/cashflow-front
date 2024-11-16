@@ -30,8 +30,15 @@ export class QuickActionsComponent {
   ];
 
   handleAction(action: string) {
-    if (action === 'expense') {
-      this.router.navigate(['/transactions/new']);
+    switch (action) {
+      case 'expense':
+        this.router.navigate(['/transactions/new']);
+        break;
+      case 'recurring':
+        this.router.navigate(['/transactions/recurring']);
+        break;
+      default:
+        console.warn('Acción no reconocida:', action);
     }
   }
 }

@@ -1,0 +1,24 @@
+<div class="recurring-expenses">
+  <div class="recurring-expenses__header">
+    <h2>Recurring Expenses</h2>
+  </div>
+
+  <div class="recurring-expenses__grid">
+    <div *ngFor="let expense of recurringExpenses"
+         class="expense-card"
+         (click)="openExpenseForm(expense)">
+      <div class="expense-card__header">
+        <div class="expense-card__icon" [style.backgroundColor]="getCategoryColor(expense.categoryId)">
+          <mat-icon>{{getCategoryIcon(expense.categoryId)}}</mat-icon>
+        </div>
+        <h3>{{expense.name}}</h3>
+      </div>
+      <p class="expense-card__description">{{expense.description}}</p>
+      <div class="expense-card__footer">
+        <span class="priority-badge" [attr.data-priority]="expense.priority">
+          Priority {{expense.priority}}
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
