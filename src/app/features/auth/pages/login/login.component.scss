@@ -1,0 +1,161 @@
+@import 'abstracts/variables';
+@import 'abstracts/mixins';
+
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--background-color);
+  padding: spacing(4);
+}
+
+.login-card {
+  background-color: var(--surface-color);
+  border-radius: map-get($border-radius, lg);
+  padding: spacing(6);
+  width: 100%;
+  max-width: 400px;
+  box-shadow: var(--header-shadow);
+  border: 1px solid var(--border-color);
+
+  @include respond-to(sm) {
+    padding: spacing(8);
+  }
+}
+
+.login-title {
+  color: var(--text-primary);
+  font-size: map-get($font-sizes, xl);
+  font-weight: map-get($font-weights, bold);
+  margin-bottom: spacing(6);
+  text-align: center;
+  margin-bottom: 10%;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: spacing(4);
+
+  .form-field {
+    width: 100%;
+  }
+}
+
+:host ::ng-deep {
+  .mat-mdc-form-field {
+    width: 100%;
+
+    // Ajuste del contenedor
+    .mat-mdc-form-field-wrapper {
+      padding-bottom: 0;
+    }
+
+    // Eliminar bordes por defecto
+    .mdc-notched-outline {
+      --mdc-outlined-text-field-outline-width: 0px;
+    }
+
+    // Contenedor del input
+    .mat-mdc-form-field-flex {
+      background-color: var(--surface);
+      border-radius: 8px;
+      padding: 0.25rem 0.75rem !important;
+      min-height: 54px;
+      position: relative;
+    }
+
+    // Ajuste de la etiqueta flotante
+    .mat-mdc-floating-label {
+      top: 16px;
+      position: relative;
+      transform-origin: left top;
+      color: var(--text-secondary);
+      
+      &.mdc-floating-label--float-above {
+        transform: translateY(-22px) scale(0.75);
+        background-color: var(--surface-elevated);
+        padding: 0 4px;
+      }
+    }
+
+    // Ajustes del input
+    .mat-mdc-form-field-infix {
+      padding: 0.75rem 0;
+      min-height: auto;
+      border-top: 0;
+    }
+
+    // Color del texto y placeholder
+    .mat-mdc-input-element {
+      color: var(--text-primary);
+      
+      &::placeholder {
+        color: var(--text-secondary);
+        opacity: 0.7;
+      }
+    }
+
+    // Estados hover y focus
+    &:hover .mdc-notched-outline__leading,
+    &:hover .mdc-notched-outline__notch,
+    &:hover .mdc-notched-outline__trailing {
+      border-color: var(--primary-color) !important;
+    }
+
+    &.mat-focused {
+      .mdc-notched-outline__leading,
+      .mdc-notched-outline__notch,
+      .mdc-notched-outline__trailing {
+        border-color: var(--primary-color) !important;
+        border-width: 1px !important;
+      }
+
+      .mat-mdc-floating-label {
+        color: var(--primary-color);
+      }
+    }
+
+    // Mensajes de error
+    .mat-mdc-form-field-error-wrapper {
+      padding: 0.25rem 0;
+      position: relative;
+    }
+
+    .mat-mdc-form-field-error {
+      color: var(--error-color);
+      font-size: 0.75rem;
+    }
+  }
+}
+
+.form-actions {
+  margin-top: spacing(4);
+
+  button {
+    width: 100%;
+    padding: spacing(2) 0;
+    font-weight: map-get($font-weights, medium);
+  }
+}
+
+.login-footer {
+  margin-top: spacing(6);
+  text-align: center;
+  color: var(--text-secondary);
+
+  a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: map-get($font-weights, medium);
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  p {
+    margin-top: spacing(2);
+  }
+}
