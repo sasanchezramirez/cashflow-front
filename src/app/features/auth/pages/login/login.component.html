@@ -1,60 +1,54 @@
-<div class="login-container">
-    <div class="login-card">
-      <h1 class="login-title">Iniciar Sesión</h1>
-      
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
-        <div class="form-field">
-          <mat-form-field appearance="outline">
-            <mat-label>Correo electrónico</mat-label>
-            <input 
-              matInput 
-              type="email" 
-              formControlName="email"
-              placeholder="ejemplo@correo.com">
-            <mat-error *ngIf="loginForm.get('email')?.hasError('required')">
-              El correo es requerido
-            </mat-error>
-            <mat-error *ngIf="loginForm.get('email')?.hasError('email')">
-              Ingrese un correo válido
-            </mat-error>
-          </mat-form-field>
+<div class="auth-layout">
+  <div class="auth-container">
+    <div class="auth-form-card">
+      <h1 class="auth-title">Iniciar Sesión</h1>
+
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            placeholder="correo@ejemplo.com">
+          <div class="error-message" *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+            {{ loginForm.get('email')?.hasError('required') ? 'El correo es requerido' : 'Ingrese un correo válido' }}
+          </div>
         </div>
-  
-        <div class="form-field">
-          <mat-form-field appearance="outline">
-            <mat-label>Contraseña</mat-label>
-            <input 
-              matInput 
+
+        <div class="form-group">
+          <div class="password-label-container">
+            <label for="password">Contraseña</label>
+            <a routerLink="/auth/forgot-password" class="forgot-link">¿Olvidaste?</a>
+          </div>
+          <div class="password-input-container">
+            <input
+              id="password"
               [type]="hidePassword ? 'password' : 'text'"
               formControlName="password">
-            <button 
-              mat-icon-button 
-              matSuffix 
-              (click)="hidePassword = !hidePassword"
-              [attr.aria-label]="'Hide password'"
-              [attr.aria-pressed]="hidePassword">
-              <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <button
+              type="button"
+              class="visibility-toggle"
+              (click)="hidePassword = !hidePassword">
+              <span class="material-icons">
+                {{hidePassword ? 'visibility_off' : 'visibility'}}
+              </span>
             </button>
-            <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
-              La contraseña es requerida
-            </mat-error>
-          </mat-form-field>
+          </div>
+          <div class="error-message" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+            La contraseña es requerida
+          </div>
         </div>
-  
-        <div class="form-actions">
-          <button 
-            mat-raised-button 
-            color="primary" 
-            type="submit"
-            [disabled]="loginForm.invalid || isLoading">
-            {{ isLoading ? 'Iniciando sesión...' : 'Iniciar Sesión' }}
-          </button>
-        </div>
+
+        <button type="submit" class="submit-button" [disabled]="loginForm.invalid || isLoading">
+          <span *ngIf="!isLoading">Iniciar Sesión</span>
+          <div *ngIf="isLoading" class="spinner"></div>
+        </button>
       </form>
-  
-      <div class="login-footer">
-        <a routerLink="/auth/forgot-password">¿Olvidaste tu contraseña?</a>
-        <p>¿No tienes cuenta? <a routerLink="/auth/register">Regístrate</a></p>
+
+      <div class="auth-footer">
+        <p>¿No tienes cuenta? <a routerLink="/auth/register" class="register-link">Crear ahora</a></p>
       </div>
     </div>
   </div>
+</div>
