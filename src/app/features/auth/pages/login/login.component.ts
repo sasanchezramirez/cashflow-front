@@ -47,8 +47,14 @@ export class LoginComponent implements OnInit {
       this.isLoading = true;
       this.authService.login(this.loginForm.value).subscribe({
         next: (response) => {
-          // Manejar el token y redireccionar
-          this.router.navigate(['/dashboard']);
+          if (response.status) {
+            const token = response.data.access_token;
+            localStorage.setItem('authToken', token);
+            this.router.navigate(['/dashboard']);
+          } else {
+            // Manejar el caso en que la respuesta no sea exitosa
+            this.isLoading = false;
+          }
         },
         error: (error) => {
           this.isLoading = false;
