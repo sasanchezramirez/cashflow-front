@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   isLoading = false;
   hidePassword = true;
+  errorMessage: string | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -57,6 +58,9 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
+    // Limpiar error previo
+    this.errorMessage = null;
+
     if (this.loginForm.valid && !this.isLoading) {
       this.isLoading = true;
 
@@ -67,25 +71,64 @@ export class LoginComponent implements OnInit {
 
       this.authService.login(loginData).subscribe({
         next: (response) => {
+          this.isLoading = false;
           if (response.status && response.apiCode === 'KO000') {
             this.router.navigate(['/dashboard']);
           } else {
-            this.showError('Error de autenticación: ' + response.message);
-            this.isLoading = false;
+            // Establecer mensaje de error
+            this.errorMessage = this.getErrorMessage(response.apiCode, response.message);
+            // También mostrar en snackbar
+            this.showError(this.errorMessage);
+            console.log('ERROR MOSTRADO:', this.errorMessage);
           }
         },
         error: (error) => {
-          console.error('Error de login:', error);
-          this.showError('Error al iniciar sesión. Por favor, inténtelo de nuevo.');
           this.isLoading = false;
+          console.error('Error de login:', error);
+          // Establecer mensaje de error
+          this.errorMessage = this.getErrorMessage(error.apiCode, error.message);
+          // También mostrar en snackbar
+          this.showError(this.errorMessage);
+          console.log('ERROR MOSTRADO (from error):', this.errorMessage);
         }
       });
     }
   }
 
+  private getErrorMessage(apiCode: string, defaultMessage?: string): string {
+    switch (apiCode) {
+      case 'KOU01':
+        return 'El usuario ya existe';
+      case 'KOU02':
+        return 'Usuario no encontrado';
+      case 'KOU03':
+        return 'Perfil de usuario inválido';
+      case 'KOU04':
+        return 'Estado de cuenta inválido';
+      case 'KOU05':
+        return 'ID inválido';
+      case 'KOU06':
+        return 'Datos de inicio de sesión inválidos';
+      case 'KO001':
+        return 'La contraseña es incorrecta';
+      case 'KO002':
+        return 'El usuario no existe';
+      case 'KO003':
+        return 'La cuenta no está verificada';
+      case 'KO004':
+        return 'La cuenta está desactivada';
+      default:
+        return defaultMessage || 'Error al iniciar sesión. Por favor, inténtalo de nuevo.';
+    }
+  }
+
   private showError(message: string): void {
+    // Usar forzosamente horizontalPosition center para evitar problemas de visibilidad
     this.snackBar.open(message, 'Cerrar', {
-      duration: 5000,
+      duration: 8000, // Duración más larga para que sea más visible
+      panelClass: ['error-snackbar'],
+      horizontalPosition: 'center',
+      verticalPosition: 'top'
     });
   }
 }

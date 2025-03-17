@@ -1,15 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-auth-layout',
   standalone: true,
-  imports: [CommonModule, RouterModule, HeaderComponent],
+  imports: [CommonModule, RouterModule],
   template: `
     <div class="auth-layout">
-      <app-header></app-header>
       <main class="auth-content">
         <router-outlet></router-outlet>
       </main>

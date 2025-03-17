@@ -1,0 +1,17 @@
+.error-snackbar {
+  background-color: var(--error-color) !important;
+  color: white !important;
+
+  .mat-simple-snackbar {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .mat-simple-snackbar-action {
+    color: white !important;
+  }
+
+  button {
+    color: white !important;
+  }
+}

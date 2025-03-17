@@ -1,23 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { authGuard } from './core/authentication/guards/auth.guard';
-import { MainLayoutComponent } from './core/layout/components/layout/main-layout.component';
 import { AuthLayoutComponent } from './core/layout/components/layout/auth-layout.component';
+import { MainLayoutComponent } from './core/layout/components/layout/main-layout.component';
+import { AuthGuard } from './core/guards/auth.guard';
 
 const routes: Routes = [
-  // Rutas de autenticación con AuthLayout
   {
     path: 'auth',
     component: AuthLayoutComponent,
-    loadChildren: () =>
-      import('./features/auth/auth.module').then(m => m.AuthModule)
+    loadChildren: () => import('./features/auth/auth-routing.module').then(m => m.AuthRoutingModule)
   },
-
-  // Rutas protegidas con MainLayout
   {
     path: '',
     component: MainLayoutComponent,
-    canActivate: [authGuard],
+    canActivate: [AuthGuard],
     children: [
       {
         path: '',
@@ -26,8 +22,7 @@ const routes: Routes = [
       },
       {
         path: 'dashboard',
-        loadChildren: () =>
-          import('./features/dashboard/dashboard.module').then(m => m.DashboardModule)
+        loadChildren: () => import('./features/dashboard/dashboard.module').then(m => m.DashboardModule)
       },
       {
         path: 'transactions',
@@ -51,12 +46,7 @@ const routes: Routes = [
       }
     ]
   },
-
-  // Ruta de fallback
-  {
-    path: '**',
-    redirectTo: 'dashboard'
-  }
+  { path: '**', redirectTo: '/auth/login' }
 ];
 
 @NgModule({

@@ -30,18 +30,34 @@ export class AuthService {
    * Iniciar sesión con email y contraseña
    */
   login(credentials: LoginRequest): Observable<ApiResponse<AuthToken>> {
+    console.log('Iniciando login con credenciales:', credentials.email);
+
     return this.http.post<ApiResponse<AuthToken>>(
       `${this.apiUrl}${environment.authEndpoints.login}`,
       credentials
     ).pipe(
       tap(response => {
+        console.log('Respuesta del servidor:', response);
         if (response.status && response.apiCode === 'KO000') {
           this.setSession(response.data.access_token);
+          this.isAuthenticatedSubject.next(true);
+        } else {
+          console.warn('Error en respuesta:', response.apiCode, response.message);
         }
       }),
       catchError(error => {
-        console.error('Error en login:', error);
-        return throwError(() => error);
+        console.error('Error en login (HTTP):', error);
+
+        // Asegurarse de que el error tenga la estructura correcta
+        const errorResponse: ApiResponse<null> = {
+          status: false,
+          apiCode: error.error?.apiCode || 'ERROR',
+          message: error.error?.message || 'Error de conexión con el servidor',
+          data: null
+        };
+
+        console.warn('Error transformado:', errorResponse);
+        return throwError(() => errorResponse);
       })
     );
   }
