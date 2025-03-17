@@ -1,4 +1,21 @@
 // Modelos para autenticación
+export interface User {
+  id: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  role: string;
+  isActive: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface AuthToken {
+  access_token: string;
+  expires_in: number;
+  token_type: string;
+}
+
 export interface LoginRequest {
   email: string;
   password: string;
@@ -7,13 +24,16 @@ export interface LoginRequest {
 export interface RegisterRequest {
   email: string;
   password: string;
-  profile_id: number;
-  status_id: number;
+  firstName?: string;
+  lastName?: string;
+  profile_id?: number;
+  status_id?: number;
 }
 
-export interface AuthToken {
-  access_token: string;
-  token_type: string;
+export interface ResetPasswordRequest {
+  email: string;
+  token: string;
+  newPassword: string;
 }
 
 export interface UserData {
